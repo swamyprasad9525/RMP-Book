@@ -9,7 +9,11 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: 'https://rmp-book.onrender.com', // replace with your actual Vercel URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 
 connectDB().then(() => {
     require('./seedDoctors')();
@@ -22,5 +26,5 @@ app.use('/api/doctors', require('./routes/doctorRoutes'));
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-    console.log("server is runing in 5000")
+    console.log(`Server is running on port ${PORT}`)
 })
