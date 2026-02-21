@@ -3,6 +3,9 @@ import axios from "axios";
 
 const AuthContext = createContext();
 
+// Set default base URL for production/development
+axios.defaults.baseURL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -12,8 +15,6 @@ export const AuthProvider = ({ children }) => {
             const token = localStorage.getItem("token");
             if (token) {
                 try {
-                    // Validate token or just decode if client-side only (less secure)
-                    // Ideally, hit /api/auth/me
                     const config = {
                         headers: {
                             Authorization: `Bearer ${token}`

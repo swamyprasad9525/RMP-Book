@@ -10,13 +10,13 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cors({
-  origin: 'https://rmpbook.vercel.app/', // replace with your actual Vercel URL
+  origin: 'https://rmpbook.vercel.app', // remove trailing slash for CORS
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
 
 connectDB().then(() => {
-    require('./seedDoctors')();
+  require('./seedDoctors')();
 });
 
 app.use('/api/auth', require('./routes/authRoutes'));
@@ -26,5 +26,5 @@ app.use('/api/doctors', require('./routes/doctorRoutes'));
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`)
+  console.log(`Server is running on port ${PORT}`)
 })
