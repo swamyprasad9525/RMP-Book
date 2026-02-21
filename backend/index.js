@@ -10,7 +10,7 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cors({
-  origin: 'https://rmp-book.onrender.com', // replace with your actual Vercel URL
+  origin: 'https://rmpbook.vercel.app', // replace with your actual Vercel URL
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
